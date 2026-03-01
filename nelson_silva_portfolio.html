@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nelson Silva Valderas — SOC Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+  :root {
+    --bg: #080c12;
+    --bg2: #0d1218;
+    --panel: #101620;
+    --border: #1c2535;
+    --border2: #253040;
+    --cyan: #00d4ff;
+    --purple: #7c5cfc;
+    --green: #00e599;
+    --red: #ff4040;
+    --orange: #ff9500;
+    --yellow: #ffd700;
+    --text: #dde4ef;
+    --muted: #7a8899;
+    --faint: #3a4555;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13.5px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 64px 0 52px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: start;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 52px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Syne Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  h1 span { color: var(--cyan); }
+
+  .hero-tagline {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .tag {
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    font-family: 'Syne Mono', monospace;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    background: var(--panel);
+  }
+
+  .tag.hi { border-color: rgba(0,212,255,0.4); color: var(--cyan); background: rgba(0,212,255,0.05); }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .contact-links a {
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+  }
+
+  .contact-links a:hover { color: var(--cyan); }
+
+  /* STATUS PANEL */
+  .status-panel {
+    background: var(--panel);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 18px 20px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+  }
+
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .status-dot.green { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
+  .status-dot.orange { background: var(--orange); }
+  .status-dot.cyan { background: var(--cyan); }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .status-label { color: var(--muted); font-size: 10px; font-family: 'Syne Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ── SECTION HEADER ── */
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .sec-tag {
+    font-family: 'Syne Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: rgba(0,212,255,0.07);
+    border: 1px solid rgba(0,212,255,0.2);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+  section { margin-bottom: 56px; }
+
+  /* ── SUMMARY ── */
+  .summary-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #c0ccdd;
+    max-width: 760px;
+    padding: 20px 24px;
+    background: var(--panel);
+    border-left: 3px solid var(--cyan);
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ── FEATURED PROJECT ── */
+  .featured-project {
+    background: var(--panel);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 28px 28px 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-project::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 16px; right: 20px;
+    font-family: 'Syne Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(0,229,153,0.3);
+    background: rgba(0,229,153,0.07);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .project-link {
+    font-family: 'Syne Mono', monospace;
+    font-size: 10.5px;
+    color: var(--cyan);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .stack-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0;
+  }
+
+  .stack-pill {
+    font-family: 'Syne Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    background: rgba(124,92,252,0.1);
+    border: 1px solid rgba(124,92,252,0.3);
+    border-radius: 2px;
+    color: #a590ff;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: #b0bece;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  /* MITRE TABLE */
+  .mitre-wrap {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Syne Mono', monospace;
+    font-size: 11px;
+  }
+
+  thead tr { background: rgba(0,212,255,0.05); }
+  th { padding: 7px 12px; text-align: left; color: var(--cyan); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+  td { padding: 6px 12px; border-top: 1px solid var(--border); color: var(--text); }
+
+  .mitre-id { color: var(--cyan); }
+  .sev-crit { color: var(--red); font-weight: 600; }
+  .sev-high { color: var(--orange); font-weight: 600; }
+  .sev-med { color: var(--yellow); }
+
+  /* SECONDARY PROJECTS GRID */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .proj-card {
+    background: var(--panel);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .proj-card:hover { border-color: var(--border2); }
+
+  .proj-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--purple), transparent);
+  }
+
+  .proj-card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .proj-card-desc {
+    font-size: 12.5px;
+    color: #8ea0b8;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+
+  /* EXPERIENCE */
+  .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-block {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 0 16px;
+    padding-bottom: 28px;
+  }
+
+  .exp-block:last-child { padding-bottom: 0; }
+
+  .tl-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 2px solid var(--cyan);
+    margin-top: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0,212,255,0.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-dot.purple { border-color: var(--purple); box-shadow: 0 0 8px rgba(124,92,252,0.3); }
+  .tl-dot.muted { border-color: var(--faint); box-shadow: none; }
+
+  .tl-line {
+    grid-column: 1;
+    width: 1px;
+    background: var(--border);
+    margin: 0 auto;
+    margin-top: -2px;
+  }
+
+  .exp-content {}
+
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .exp-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-family: 'Syne Mono', monospace;
+  }
+
+  .exp-meta .period { color: var(--cyan); }
+
+  .exp-bullets { padding-left: 14px; }
+  .exp-bullets li { font-size: 12.5px; color: #a0b2c8; margin-bottom: 4px; line-height: 1.6; }
+
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,149,0,0.08);
+    border: 1px solid rgba(255,149,0,0.25);
+    border-radius: 3px;
+    padding: 3px 9px;
+    font-size: 11px;
+    color: var(--orange);
+    margin: 4px 4px 0 0;
+    font-family: 'Syne Mono', monospace;
+  }
+
+  /* SKILLS */
+  .skills-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .skill-group-title {
+    font-family: 'Syne Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .skill-bar-item { margin-bottom: 9px; }
+
+  .skill-bar-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .skill-pct {
+    font-family: 'Syne Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+  }
+
+  .bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+  }
+
+  /* CERTS */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .cert-card {
+    background: var(--panel);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .cert-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  .cert-icon.done { background: rgba(0,229,153,0.1); }
+  .cert-icon.prog { background: rgba(255,149,0,0.1); }
+
+  .cert-title { font-size: 12.5px; font-weight: 500; color: #fff; margin-bottom: 2px; }
+  .cert-sub { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+  .cert-badge-done { font-family: 'Syne Mono', monospace; font-size: 9px; color: var(--green); letter-spacing: 0.08em; font-weight: 600; }
+  .cert-badge-prog { font-family: 'Syne Mono', monospace; font-size: 9px; color: var(--orange); letter-spacing: 0.08em; font-weight: 600; }
+
+  /* LANGS + THM SIDE */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .thm-card {
+    background: var(--panel);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .thm-stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+
+  .thm-stat:last-child { border-bottom: none; }
+  .thm-val { font-family: 'Syne Mono', monospace; color: var(--cyan); font-size: 13px; font-weight: 600; }
+
+  /* LANG */
+  .lang-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .lang-name { font-size: 13px; }
+  .lang-level {
+    font-family: 'Syne Mono', monospace;
+    font-size: 10.5px;
+    color: var(--cyan);
+    padding: 2px 8px;
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 0 32px;
+    margin-top: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Syne Mono', monospace;
+    font-size: 10.5px;
+    color: var(--faint);
+  }
+
+  @media print {
+    body::before { display: none; }
+    .hero { padding: 30px 0; }
+    section { margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">SOC Analyst · Cybersecurity Portfolio · 2026</div>
+      <h1>Nelson <span>Silva</span><br>Valderas</h1>
+      <p class="hero-tagline">
+        Security professional with 10+ years in physical security operations, building a cybersecurity career through real-world projects and self-directed learning. TryHackMe Top 5% globally.
+      </p>
+      <div class="hero-tags">
+        <span class="tag hi">SOC Operations</span>
+        <span class="tag hi">MITRE ATT&amp;CK</span>
+        <span class="tag hi">Threat Detection</span>
+        <span class="tag">Python</span>
+        <span class="tag">SIEM</span>
+        <span class="tag">Log Analysis</span>
+        <span class="tag">AI Tooling</span>
+        <span class="tag">Splunk</span>
+        <span class="tag">Sentinel</span>
+      </div>
+      <div class="contact-links">
+        <span>📍 Vilanova i la Geltrú, Spain</span>
+        <a href="tel:+34629466377">📞 +34 629 466 377</a>
+        <a href="mailto:nelsonsilvavalderas@gmail.com">✉ nelsonsilvavalderas@gmail.com</a>
+        <a href="https://linkedin.com/in/nelson-silva-valderas">🔗 LinkedIn</a>
+        <a href="https://github.com/NSVEXL">⌥ GitHub</a>
+        <a href="https://tryhackme.com/p/NSVEXL">🎯 TryHackMe</a>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <div style="font-family:'Syne Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Status</div>
+      <div class="status-row"><div class="status-dot green"></div><div><div style="font-size:12px; color:#fff">Open to Remote</div><div class="status-label">EU / UK / US</div></div></div>
+      <div class="status-row"><div class="status-dot cyan"></div><div><div style="font-size:12px; color:#fff">Available immediately</div><div class="status-label">Junior SOC / Blue Team</div></div></div>
+      <div class="status-row"><div class="status-dot orange"></div><div><div style="font-size:12px; color:#fff">Security+ · SAL1</div><div class="status-label">In progress</div></div></div>
+      <div style="margin-top:6px; padding-top:8px; border-top:1px solid var(--border);">
+        <div style="font-family:'Syne Mono',monospace; font-size:10px; color:var(--cyan);">🏆 TryHackMe Top 5%</div>
+        <div style="font-family:'Syne Mono',monospace; font-size:10px; color:var(--muted);">68 rooms · SOC Level 1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <section>
+    <div class="sec-header"><div class="sec-tag">About</div><div class="sec-line"></div></div>
+    <div class="summary-text">
+      SOC Analyst candidate with 10+ years in security operations, transitioning into cybersecurity through disciplined self-training and a hands-on public portfolio. Built a functional SIEM with MITRE ATT&amp;CK detection, a multi-agent AI triage system, and a zero-trust Chrome extension — all while self-funding the transition working as a bus driver. Practiced Splunk (SPL, dashboards) and Microsoft Sentinel (KQL, analytics rules) via TryHackMe labs and local VMs. TryHackMe Top 5% globally with 68 rooms completed. Fluent in English, Spanish, and Catalan. Seeking junior SOC / Blue Team Analyst roles, remote preferred, open internationally.
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECT -->
+  <section>
+    <div class="sec-header"><div class="sec-tag">Featured Project</div><div class="sec-line"></div></div>
+
+    <div class="featured-project">
+      <div class="featured-badge">⬤ LATEST</div>
+      <div class="project-name">🛡️ SIEM-Lite — Log Analysis &amp; Threat Detection Dashboard</div>
+      <a class="project-link" href="https://github.com/NSVEXL/siem-lite">github.com/NSVEXL/siem-lite ↗</a>
+
+      <p class="project-desc">
+        Fully functional SIEM built in Python. Ingests and parses real Linux <code style="color:var(--cyan);font-size:11px">auth.log</code> and UFW firewall logs, applies 5 rule-based detection algorithms with time-window correlation, maps every alert to MITRE ATT&amp;CK, and renders a real-time Flask dashboard with Chart.js. Includes live VirusTotal IP enrichment: test run confirmed <code style="color:var(--cyan);font-size:11px">185.220.101.5</code> as <strong style="color:var(--red)">MALICIOUS</strong> — Tor exit node, flagged by 11 engines, reputation −16.
+      </p>
+
+      <div class="mitre-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Detection Rule</th>
+              <th>MITRE ID</th>
+              <th>Tactic</th>
+              <th>Severity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>SSH Brute Force</td><td class="mitre-id">T1110</td><td>Credential Access</td><td class="sev-high">HIGH</td></tr>
+            <tr><td>Port Scan</td><td class="mitre-id">T1046</td><td>Discovery</td><td class="sev-med">MEDIUM</td></tr>
+            <tr><td>Privilege Escalation</td><td class="mitre-id">T1548</td><td>Privilege Escalation</td><td class="sev-crit">CRITICAL</td></tr>
+            <tr><td>Credential Dumping</td><td class="mitre-id">T1003</td><td>Credential Access</td><td class="sev-crit">CRITICAL</td></tr>
+            <tr><td>Off-Hours Login</td><td class="mitre-id">T1078</td><td>Initial Access</td><td class="sev-med">MEDIUM</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stack-pills" style="margin-top:14px">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Flask</span>
+        <span class="stack-pill">Pandas</span>
+        <span class="stack-pill">Chart.js</span>
+        <span class="stack-pill">VirusTotal API v3</span>
+        <span class="stack-pill">MITRE ATT&amp;CK</span>
+        <span class="stack-pill">Linux auth.log</span>
+        <span class="stack-pill">UFW Firewall logs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER PROJECTS -->
+  <section>
+    <div class="sec-header"><div class="sec-tag">Projects</div><div class="sec-line"></div></div>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-card-name">🤖 ai-soc-analyst</div>
+        <a class="project-link" style="font-size:10px; margin-bottom:8px; display:inline-block" href="https://github.com/NSVEXL/ai-soc-analyst">github.com/NSVEXL/ai-soc-analyst ↗</a>
+        <p class="proj-card-desc">Multi-agent AI system automating IP reputation triage via VirusTotal API. Delivers structured, analyst-ready threat summaries with a CrewAI + Gemini 2.5 Flash architecture. Significantly reduces manual lookup overhead.</p>
+        <div class="stack-pills">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">CrewAI</span>
+          <span class="stack-pill">Gemini 2.5 Flash</span>
+          <span class="stack-pill">VirusTotal API</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-name">🔒 AI-Guard</div>
+        <a class="project-link" style="font-size:10px; margin-bottom:8px; display:inline-block" href="https://github.com/NSVEXL/ai-guard">github.com/NSVEXL/ai-guard ↗</a>
+        <p class="proj-card-desc">Zero-trust Chrome extension with real-time AI threat analysis. DOM scraping + VirusTotal + Gemini 2.5 to detect and block zero-day phishing attacks before page load completes — no signature database required.</p>
+        <div class="stack-pills">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">FastAPI</span>
+          <span class="stack-pill">Chrome Extension API</span>
+          <span class="stack-pill">Gemini 2.5</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="sec-header"><div class="sec-tag">Experience</div><div class="sec-line"></div></div>
+
+    <div class="exp-timeline">
+
+      <!-- Cybersecurity -->
+      <div class="exp-block">
+        <div>
+          <div class="tl-dot purple"></div>
+          <div class="tl-line" style="height:100%; min-height:60px"></div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Cybersecurity Portfolio Development</div>
+          <div class="exp-meta">
+            <span>Independent / Self-directed · Remote</span>
+            <span class="period">2025 – Present</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Built 4 public security projects: SIEM dashboard, AI SOC triage agent, AI-powered web filter, system hardening utility.</li>
+            <li>Completed Google Cybersecurity Certificate (Coursera, 2025) + TryHackMe Cyber Security 101 (45+ hrs). Top 5% global ranking, 68 rooms completed.</li>
+            <li>Hands-on Splunk: log ingestion, SPL queries, alert dashboards (TryHackMe labs + local install).</li>
+            <li>Hands-on Microsoft Sentinel: KQL queries, analytics rules, workbooks (TryHackMe labs + local VM).</li>
+            <li>CompTIA Security+ (SY0-701) and SAL1 certification in active progress.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Prosegur -->
+      <div class="exp-block">
+        <div>
+          <div class="tl-dot"></div>
+          <div class="tl-line" style="height:100%; min-height:60px"></div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Physical Security — Inspector / Coordinator · Team Lead · Officer</div>
+          <div class="exp-meta">
+            <span>Prosegur · Ilunion Security · Spain</span>
+            <span class="period">2013 – 2024</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>10+ years managing physical access control, threat assessment, and incident response in high-stakes environments.</li>
+            <li>Career progression: Security Officer → Team Lead → Service Inspector/Coordinator (Prosegur).</li>
+            <li>Led resolution of physical security breaches and coordinated emergency protocols; supervised access control and identity systems (Physical IAM).</li>
+            <li>Drafted detailed incident reports; enforced strict SLA compliance and security policy adherence.</li>
+            <li>Operational mindset — risk identification, protocol enforcement, incident escalation — directly transferable to SOC operations.</li>
+          </ul>
+          <div style="margin-top:10px">
+            <span class="award-badge">★ Prosegur National Excellence Award — 2014</span>
+            <span class="award-badge">★ Prosegur Regional Excellence Award — 2013</span>
+            <span class="award-badge">★ Police Directorate Honorable Mention, Cat. B — 2014</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bus driver -->
+      <div class="exp-block" style="padding-bottom:0">
+        <div>
+          <div class="tl-dot muted"></div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Professional Driver</div>
+          <div class="exp-meta">
+            <span>Dotor Bus / Transportist</span>
+            <span class="period">2024 – Present</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Current role financing full-time cybersecurity self-training and portfolio development.</li>
+            <li>Demonstrates reliability under pressure, rotating shifts, and fast decision-making — aligned with SOC 24/7 operational environment.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="sec-header"><div class="sec-tag">Technical Skills</div><div class="sec-line"></div></div>
+    <div class="skills-section">
+      <div>
+        <div class="skill-group-title">Core Stack</div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Python / Automation</span><span class="skill-pct">85%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Linux / Bash</span><span class="skill-pct">80%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>SIEM / Log Analysis</span><span class="skill-pct">75%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>MITRE ATT&amp;CK</span><span class="skill-pct">70%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:70%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Flask / FastAPI</span><span class="skill-pct">70%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:70%"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Tools & Platforms</div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>AI / CrewAI / Gemini</span><span class="skill-pct">75%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>VirusTotal / Threat Intel</span><span class="skill-pct">75%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Wireshark / Nmap</span><span class="skill-pct">65%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Splunk (SPL)</span><span class="skill-pct">60%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:60%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-header"><span>Microsoft Sentinel (KQL)</span><span class="skill-pct">55%</span></div>
+          <div class="bar-bg"><div class="bar-fill" style="width:55%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <div class="sec-header"><div class="sec-tag">Certifications</div><div class="sec-line"></div></div>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-icon done">✅</div>
+        <div>
+          <div class="cert-title">TryHackMe — Cyber Security 101</div>
+          <div class="cert-sub">TryHackMe · March 2026 · ID: THM-2XLH3NVGSD</div>
+          <div class="cert-badge-done">✓ COMPLETED</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon done">✅</div>
+        <div>
+          <div class="cert-title">Google Cybersecurity Certificate</div>
+          <div class="cert-sub">Google / Coursera · 2025</div>
+          <div class="cert-badge-done">✓ COMPLETED</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon prog">⏳</div>
+        <div>
+          <div class="cert-title">CompTIA Security+ (SY0-701)</div>
+          <div class="cert-sub">CompTIA · Exam scheduled 2026</div>
+          <div class="cert-badge-prog">⟳ IN PROGRESS</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon prog">⏳</div>
+        <div>
+          <div class="cert-title">SOC Level 1 — SAL1</div>
+          <div class="cert-sub">TryHackMe</div>
+          <div class="cert-badge-prog">⟳ IN PROGRESS</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOTTOM ROW: THM + LANGS -->
+  <section style="margin-bottom:0">
+    <div class="sec-header"><div class="sec-tag">Languages &amp; Platforms</div><div class="sec-line"></div></div>
+    <div class="bottom-row">
+
+      <div class="thm-card">
+        <div style="font-family:'Syne Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">TryHackMe</div>
+        <div class="thm-stat"><span>Global Ranking</span><span class="thm-val">Top 5%</span></div>
+        <div class="thm-stat"><span>Rooms Completed</span><span class="thm-val">68</span></div>
+        <div class="thm-stat"><span>Active Path</span><span class="thm-val">SOC Level 1</span></div>
+        <div class="thm-stat"><span>Profile</span><a href="https://tryhackme.com/p/NSVEXL" style="font-family:'Syne Mono',monospace; font-size:11px; color:var(--cyan); text-decoration:none;">tryhackme.com/p/NSVEXL</a></div>
+        <div style="margin-top:12px; padding-top:10px; border-top:1px solid var(--border); font-family:'Syne Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Education</div>
+        <div style="font-size:12px; color:var(--text);">IT Systems Administrator</div>
+        <div style="font-size:11px; color:var(--muted);">Technical Vocational Training (FP)</div>
+      </div>
+
+      <div>
+        <div class="thm-card">
+          <div style="font-family:'Syne Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">Languages</div>
+          <div class="lang-row"><span class="lang-name">Spanish</span><span class="lang-level">NATIVE</span></div>
+          <div class="lang-row"><span class="lang-name">Catalan</span><span class="lang-level">NATIVE</span></div>
+          <div class="lang-row" style="border:none"><span class="lang-name">English</span><span class="lang-level">ADVANCED B2+</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Nelson Silva Valderas · SOC Analyst Portfolio · 2026</span>
+    <span>nelsonsilvavalderas@gmail.com · github.com/NSVEXL</span>
+  </footer>
+
+</div>
+</body>
+</html>
